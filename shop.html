@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEZ</title>
+    <link rel="stylesheet" href="shop.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul class="sidebar">
+                <li onclick="hideSidebar()">
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" width="24px" viewBox="0 0 24 24"
+                            color="black">
+                            <path
+                                d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                        </svg>
+                    </a>
+                </li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Cart</a></li>
+                <li><a href="products2.html">Products</a></li>
+                <li><a href="register.html">Register</a></li>
+            </ul>
+            <ul>
+                <li class="hideOnMobileMax"><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">ShopEZ</a></li>
+                <li class="hideOnMobile"><a href="index.html">Home</a></li>
+                <li class="hideOnMobile"><a href="shop.html">Cart</a></li>
+                <li class="hideOnMobile"><a href="products2.html">Products</a></li>
+                <li class="hideOnMobile"><a href="register.html">Register</a></li>
+                <li class="menuButton" onclick=showSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" color="black"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="filtersSidebar" class="sidebar">
+        <button onclick="hideSidebar()">Close</button>
+        <div class="filter-options">
+            <input type="text" placeholder="Category">
+            <input type="text" placeholder="Brand">
+            <input type="range" min="0" max="1000" step="10" placeholder="Price">
+            <input type="text" placeholder="Rating">
+        </div>
+    </div>
+
+    <main>
+        <div id="product-list"></div>
+    </main>
+
+    <script>
+function displayCart() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const productList = document.getElementById('product-list');
+    productList.innerHTML = '';
+
+    if (cart.length === 0) {
+        productList.innerHTML = '<div class="shopping-cart"><p class="empty-cart">Your cart is empty!</p></div>';
+        return;
+    }
+
+    cart.forEach((product) => {
+        const productCard = document.createElement('div');
+        productCard.classList.add('product-card');
+        productCard.innerHTML = `
+            <div class="cart-item">
+                <img class="item-thumbnail" src="${product.thumbnail || 'default-image.avif'}" alt="${product.title}" />
+                <div class="item-details">
+                    <h3>${product.title}</h3>
+                    <p>${product.description}</p>
+                    <p>Price: ${product.price} ${product.currency}</p>
+                    <p>Quantity: ${product.quantity}</p>
+                </div>
+                <button class="delete-button" onclick="deleteFromCart('${product.id}')">Delete</button>
+            </div>
+        `;
+        productList.appendChild(productCard);
+    });
+}
+
+        function deleteFromCart(productId) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            cart = cart.filter(item => item.id !== productId);
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            alert('Product removed from cart!');
+
+            displayCart();
+        }
+
+        document.addEventListener('DOMContentLoaded', displayCart);
+    </script>
+    <script src="script.js"></script>
+    <script src="shopscript.js"></script>
+
+</body>
+
+</html>

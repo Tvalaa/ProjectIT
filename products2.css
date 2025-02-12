@@ -1,0 +1,90 @@
+@import url(styles.css);
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .filter-sidebar {
+    width: 250px;
+    padding: 20px;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+  }
+  
+  .filter-sidebar h3 {
+    text-align: center;
+  }
+  
+  .filter-sidebar input,
+  .filter-sidebar select,
+  .filter-sidebar button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+
+  .filter-sidebar input {
+    width: 90%;
+  }
+  
+  .filter-sidebar button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .filter-sidebar button:hover {
+    background-color: #0056b3;
+  }
+  
+  #productInfo {
+    margin-left: 280px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .product {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+  }
+  
+  .product img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .product h3 {
+    color: #333;
+    font-size: 18px;
+  }
+  
+  .product p {
+    color: #555;
+  }
+  
+  @media(max-width: 750px){
+    .hideOnMobile{
+        display: none;
+    }
+    .menuButton{
+        display: block;
+    }
+}

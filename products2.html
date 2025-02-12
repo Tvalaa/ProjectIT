@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products</title>
+  <link rel="stylesheet" href="products2.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul class="sidebar">
+        <li onclick="hideSidebar()">
+          <a href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" color="black">
+              <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+            </svg>
+          </a>
+        </li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Cart</a></li>
+        <li><a href="products2.html">Products</a></li>
+        <li><a href="register.html">Register</a></li>
+      </ul>
+      <ul>
+        <li class="hideOnMobileMax">
+          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">ShopEZ</a>
+        </li>
+        <li class="hideOnMobile"><a href="index.html">Home</a></li>
+        <li class="hideOnMobile"><a href="shop.html">Cart</a></li>
+        <li class="hideOnMobile"><a href="products2.html">Products</a></li>
+        <li class="hideOnMobile"><a href="register.html">Register</a></li>
+        <li class="menuButton" onclick="showSidebar()">
+          <a href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" color="black">
+              <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="filter-sidebar">
+    <h3>Filters</h3>
+    <input type="text" id="searchKeyword" placeholder="Search products" />
+    <button onclick="applyFilters()">Search</button>
+    
+    <div>
+      <h4>Categories</h4>
+      <select id="categoryFilter">
+        <option value="">All Categories</option>
+      </select>
+    </div>
+  
+    <div>
+      <h4>Brands</h4>
+      <select id="brandFilter">
+        <option value="">All Brands</option>
+      </select>
+    </div>
+  
+    <div>
+      <h4>Price Range</h4>
+      <input type="range" id="priceRange" min="0" max="5000" step="50" value="5000" />
+      <span id="priceOutput">0 - 5000 USD</span>      
+    </div>
+  
+    <button onclick="applyFilters()">Apply Filters</button>
+  </div>
+
+  <!-- This div is where your products and product details will be displayed -->
+  <div id="productInfo"></div>
+
+  <!-- Include your JavaScript files -->
+  <script src="script.js"></script>
+  <script src="products2.js"></script>
+</body>
+</html>
