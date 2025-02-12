@@ -32,12 +32,11 @@ function fetchProducts() {
   fetch("https://api.everrest.educata.dev/shop/products/all?page_index=1&page_size=20")
     .then(response => response.json())
     .then(data => {
-      const products = data.products; // Use the 'products' array from the response
+      const products = data.products;
       const productList = document.getElementById("product-list");
       productList.innerHTML = ''; 
 
       products.forEach(product => {
-        // Use product.thumbnail and product.title as per the API's structure.
         const imageUrl = (product.thumbnail && !isImgurLink(product.thumbnail))
             ? product.thumbnail
             : 'default-image.avif';

@@ -106,8 +106,6 @@ async function searchProducts() {
     queryParams.append('brand', brand);
   }
   
-  // Only add the price filter if the user has adjusted the slider
-  // Use a minimum of 1 instead of 0 to match the API’s expected price range.
   if (priceRangeValue < priceRangeMax) {
     queryParams.append('price_min', '1');
     queryParams.append('price_max', priceRangeValue.toString());
@@ -158,7 +156,6 @@ function displayProduct(product) {
   `;
 }
 
-// Display a list of products.
 function displayProducts(products) {
   const productInfo = document.getElementById('productInfo');
   productInfo.innerHTML = '';
@@ -184,7 +181,6 @@ function displayProducts(products) {
   });
 }
 
-// Add a product to the cart using localStorage.
 function addToCart(productId, productTitle, productPrice, productCurrency) {
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
   const existingProductIndex = cart.findIndex(item => item.id === productId);
@@ -203,7 +199,6 @@ function addToCart(productId, productTitle, productPrice, productCurrency) {
   alert('Product added to cart!');
 }
 
-// Rate a product using the official API endpoint.
 async function rateProduct(productId, rating) {
   const token = localStorage.getItem('accessToken');
   const response = await fetch(`${apiUrl}/rate`, {
@@ -223,20 +218,16 @@ async function rateProduct(productId, rating) {
   displayProduct(data);
 }
 
-// Update the price range output as the user moves the slider.
 document.getElementById('priceRange').addEventListener('input', (event) => {
   document.getElementById('priceOutput').textContent = `0 - ${event.target.value} USD`;
 });
 
-// Trigger search when filters are applied.
 function applyFilters() {
   searchProducts();
 }
 
-// On page load, fetch categories, brands, and display a default product.
 window.onload = function () {
   getAllCategories();
   getAllBrands();
-  // Display a default product. You can change or remove this as needed.
   getProductById('64edc5b96ad1cbae75d3025a');
 };
